@@ -19,9 +19,10 @@ int main(){
         return 1;
     }
     // read all stock quantities from file 
-    for (size_t i = 0; i < stock.size(); i++){
-        file >> stock[i];
-    }
+    int value;
+     while (file >> value){
+        stock.push_back(value);
+     }
     // Display stock 
     cout << "Store inventory (quantities):\n";
     for ( int qty : stock){
@@ -29,17 +30,21 @@ int main(){
     }
     cout << "\n";
 
-    //std::array functions to display array info
+    //std::vector functions to display array info
     cout << "\n--- Array Info ---\n";
-    cout << "Total items: " << stock.size() << "\n";               // .size()
-    cout << "First item stock: " << stock.front() << "\n";         // .front()
-    cout << "Last item stock: " << stock.back() << "\n";           // .back()
-    cout << "Item at index 5 has stock: " << stock.at(5) << "\n";  // .at()
-    
-    // Use .fill() to reset all stock values to 0
-    stock.fill(0);
+    cout << "Total items: " << stock.size() << "\n";                    // .size()
+    if (!stock.empty()){
+        cout << "First item stock: " << stock.front() << "\n";         // .front()
+        cout << "Last item stock: " << stock.back() << "\n";           // .back()
+    }
+    if (stock.size() > 5){
+        cout << "Item at index 5 has stock: " << stock.at(5) << "\n";  // .at()
+            
+    }
+        // Use .fill() to reset all stock values to 0
+        fill(stock.begin(), stock.end(), 0);
 
-    // Print array after fill
+    // Print victor after reset
     cout << "\nAfter resetting stock (fill(0)):\n";
     for (int qty : stock){
         cout << qty << " ";
